@@ -1,0 +1,16 @@
+{
+    "questions":[
+        {
+            "title": "Tank",
+            "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/1024px-Alabino05042017-40.jpg",
+            "variants": ["T-72", "BTR-60", "BMP-1", "BRDM"],
+            "answer": "T-72"
+        },
+        {
+            "title": "SPG",
+            "imgUrl": "http://www.military-today.com/artillery/2s19_msta_s.jpg",
+            "variants":["2S3 Akatsiya","T-80", "BMP-2", "2S19 Msta-S"],
+            "answer": "2S19 Msta-S"
+        }
+    ]
+}
