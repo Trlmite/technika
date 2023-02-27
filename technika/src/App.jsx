@@ -1,5 +1,6 @@
 import { Paper, Typography } from '@mui/material';
 import { TechCard } from './techCard';
+import  PrevNextBtn  from "./prevNextBtn";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       Technika
     </Typography>
     <TechCard />
+    <PrevNextBtn />
    </Paper>
   );
 }
