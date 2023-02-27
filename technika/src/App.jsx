@@ -6,7 +6,7 @@ import data from './data.json'
 function App() {
 
   const [questions, setQuestions] = useState(data.questions)
-  const [userAnswer, setUserAnswer] = useState([])
+  const [userAnswer, setUserAnswer] = useState()
   const [currentQ, setCurrentQ] = useState(questions[1])
 
   return (
