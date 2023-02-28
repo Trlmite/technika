@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardMedia, CardContent, Typography, Button, Grid  } from '@mui/material'
 import PrevNextBtn from './prevNextBtn'
 
-export function TechCard({question, back, forward}) {
+export function TechCard({question, back, forward, getValue}) {
     
 
     return (
@@ -24,9 +24,9 @@ export function TechCard({question, back, forward}) {
             <CardContent>
                 <Grid container spacing={2} direction={"row"}>
                   {question.variants.map(variant => {
-                    return <Grid item xs={12} >
-                                <Button sx={{width: 1}} variant={"outlined"} value={variant} >
-                                    <Typography variant="button" color="initial" >{variant}</Typography>
+                    return <Grid item xs={12} key={variant}>
+                                <Button sx={{width: 1}} variant={"outlined"} value={variant} onClick={getValue} key={variant}>
+                                    {variant}
                                 </Button>
                             </Grid>
                   })}
