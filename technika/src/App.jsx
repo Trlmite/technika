@@ -8,7 +8,20 @@ function App() {
 
   const [questions, setQuestions] = useState(data.questions)
   const [userAnswer, setUserAnswer] = useState([])
-  const [currentQ, setCurrentQ] = useState(questions[1])
+  const [currentQ, setCurrentQ] = useState()
+
+  const start = () => {
+    setCurrentQ(questions[0])
+  }
+
+  // testukui 
+  const back = () => {
+    console.log("back")
+  }
+
+  const forward = () => {
+    console.log("forward")
+  }
 
   return (
    <Paper align="center" sx={{display: "flex", justifyContent: "center", flexDirection: 'column'}}>
