@@ -7,22 +7,8 @@ import { StartPage } from './startPage';
 function App() {
 
   const [questions, setQuestions] = useState(data.questions)
-  const [userAnswer,setUserAnswer] = useState()
-  const [currentQ, setCurrentQ] = useState()
-  
- 
-  const start = () => {
-    setCurrentQ(data.questions[0])
-  }
-
-  const back = () => {
-    console.log("back")
-  }
-
-  const forward = () => {
-    console.log("forward")
-  }
-
+  const [userAnswer, setUserAnswer] = useState([])
+  const [currentQ, setCurrentQ] = useState(questions[1])
 
   return (
    <Paper align="center" sx={{display: "flex", justifyContent: "center", flexDirection: 'column'}}>
