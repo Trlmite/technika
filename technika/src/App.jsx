@@ -7,7 +7,7 @@ import { StartPage } from './startPage';
 function App() {
 
   const [questions, setQuestions] = useState(data.questions)
-  const [userAnswer, setUserAnswer] = useState([])
+  const [userAnswer, setUserAnswer] = useState()
   const [currentQ, setCurrentQ] = useState()
   const [questionNumber, setQuestionNumber] = useState(0)
 
@@ -15,13 +15,27 @@ function App() {
     setCurrentQ(questions[questionNumber])
   }
 
+  const checkIfAnswered = () =>{
+  }
+
+  console.log(questionNumber)
+
   // testukui 
   const back = () => {
-    console.log("back")
+    if (questionNumber >= 0){
+      let prevQ = questionNumber - 1
+      setQuestionNumber(prevQ)
+      setCurrentQ(questions[prevQ])
+    }
   }
 
   const forward = () => {
-    console.log("forward")
+    if (questionNumber < questions.length){
+      let nextQ = questionNumber + 1
+      setQuestionNumber(nextQ)
+      setCurrentQ(questions[nextQ])
+      console.log({questionNumber,nextQ})
+    }
   }
 
   // atsakymo gavimui teskutai 
@@ -30,9 +44,8 @@ function App() {
     if(questionNumber < questions.length){
       setQuestionNumber(questionNumber + 1)
       setCurrentQ(questions[questionNumber])
-      console.log(questionNumber)
     } else {
-      console.log("pabaiga")
+      console.log(userAnswer)
     }
   }
 
@@ -43,9 +56,19 @@ function App() {
       answer: currentQ.answer,
       question: currentQ
     }
-    setUserAnswer( current => [...current, answer])
-    changeQ()
+    if(!userAnswer){
+      setUserAnswer([answer])
+    } else{
+      setUserAnswer( [...userAnswer, answer])
+    }
   }
+
+
+
+  useEffect(() => {
+    changeQ()
+  }, [userAnswer])
+  
 
   return (
    <Paper align="center" sx={{display: "flex", justifyContent: "center", flexDirection: 'column'}}>
