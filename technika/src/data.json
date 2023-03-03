@@ -11,6 +11,12 @@
             "imgUrl": "http://www.military-today.com/artillery/2s19_msta_s.jpg",
             "variants":["2S3 Akatsiya","T-80", "BMP-2", "2S19 Msta-S"],
             "answer": "2S19 Msta-S"
+        },
+        {
+            "title": "Tank",
+            "imgUrl": "https://thumbs.dreamstime.com/z/russian-tank-t-bvm-moscow-region-russia-august-russian-tank-t-bvm-start-demonstration-program-alabino-234467736.jpg",
+            "variants": ["T-64", "T-90", "T-80", "BMP-3"],
+            "answer": "T-80"
         }
     ]
 }

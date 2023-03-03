@@ -2,12 +2,8 @@ import React from 'react'
 import { Card, CardMedia, CardContent, Typography, Button, Grid  } from '@mui/material'
 import PrevNextBtn from './prevNextBtn'
 
-export function TechCard({question}) {
+export function TechCard({question, back, forward, getValue}) {
     
-
-    const logValue = (_) =>{
-        console.log(_.target.textContent)
-    }
 
     return (
         <Card >
@@ -28,20 +24,19 @@ export function TechCard({question}) {
             <CardContent>
                 <Grid container spacing={2} direction={"row"}>
                   {question.variants.map(variant => {
-                    return <>
-                        <Grid item xs={12} >
-                                <Button sx={{width: 1}} variant={"outlined"} onClick={logValue}>
-                                    <Typography variant="button" color="initial" >
-                                        {variant}
-                                    </Typography>
+                    return <Grid item xs={12} key={variant}>
+                                <Button sx={{width: 1}} variant={"outlined"} value={variant} onClick={getValue} key={variant}>
+                                    {variant}
                                 </Button>
-                        </Grid>
-                    </>
+                            </Grid>
                   })}
                 </Grid>
             </CardContent>
             <CardContent sx={{ justifyContent: "space-around", display: "flex"}}>
-                <PrevNextBtn/>
+                <PrevNextBtn
+                    back={back}
+                    forward={forward}
+                />
             </CardContent>
         </Card>
     )
