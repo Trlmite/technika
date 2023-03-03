@@ -64,7 +64,7 @@ function App() {
   }
 
 
-
+// netinka nes useEffect du kartus pradzioj suveikia, ir numusa start page state, ir klausimu forward, nes question number po pirmo renderio lygu 1 : \
   useEffect(() => {
     changeQ()
   }, [userAnswer])
