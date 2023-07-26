@@ -3,22 +3,23 @@ import { Paper } from '@mui/material';
 import { TechCard } from './techCard';
 import data from './data.json'
 import { StartPage } from './startPage';
+import { Result } from './result';
 
 function App() {
 
   const [questions, setQuestions] = useState(data.questions)
-  const [userAnswer, setUserAnswer] = useState()
+  const [userAnswer, setUserAnswer] = useState([])
   const [currentQ, setCurrentQ] = useState()
   const [questionNumber, setQuestionNumber] = useState(0)
+  const [started, setStarted] = useState(false)
+  const [finished, setFinished] = useState(false)
 
   const start = () => {
-    setCurrentQ(questions[questionNumber])
+    setStarted(true)
   }
 
   const checkIfAnswered = () =>{
   }
-
-  console.log(questionNumber)
 
   // testukui 
   const back = () => {
@@ -45,7 +46,7 @@ function App() {
       setQuestionNumber(questionNumber + 1)
       setCurrentQ(questions[questionNumber])
     } else {
-      console.log(userAnswer)
+      setFinished(true)
     }
   }
 
@@ -56,30 +57,25 @@ function App() {
       answer: currentQ.answer,
       question: currentQ
     }
-    if(!userAnswer){
-      setUserAnswer([answer])
-    } else{
-      setUserAnswer( [...userAnswer, answer])
-    }
+    setUserAnswer([...userAnswer, answer])
   }
 
-
-// netinka nes useEffect du kartus pradzioj suveikia, ir numusa start page state, ir klausimu forward, nes question number po pirmo renderio lygu 1 : \
   useEffect(() => {
     changeQ()
   }, [userAnswer])
-  
 
   return (
    <Paper align="center" sx={{display: "flex", justifyContent: "center", flexDirection: 'column'}}>
-    {currentQ ? 
-      <TechCard 
-        question={currentQ} 
-        back={back} 
-        forward={forward}
-        getValue={getValue}
-        /> 
-        : <StartPage onClick={start}/> }
+    <StartPage onClick={start} start={started}/>
+    {(started && !finished) ? <TechCard
+      question={currentQ}
+      back={back}
+      forward={forward}
+      getValue={getValue}
+    /> : null }
+    {
+      (started && finished) ? <Result results={userAnswer}/> : null
+    }
    </Paper>
   );
 }
