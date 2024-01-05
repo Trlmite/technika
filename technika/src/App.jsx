@@ -8,55 +8,31 @@ import { Result } from './result';
 function App() {
 
   const [questions, setQuestions] = useState(data.questions)
-  const [userAnswer, setUserAnswer] = useState([])
   const [currentQ, setCurrentQ] = useState()
-  const [questionNumber, setQuestionNumber] = useState(0)
-  const [started, setStarted] = useState(false)
-  const [finished, setFinished] = useState(false)
+  const [questionNum, setQuestionNum] = useState(0)
+  const [userAnswer, setUserAnswer] = useState([])
+  const [state, setState] = useState('start')
 
-  const start = () => {
-    setStarted(true)
+  const startF = () => {
+    setCurrentQ(questions[questionNum])
+    setState('question')
   }
-
-  const checkIfAnswered = () =>{
-  }
-
-  // testukui 
-  const back = () => {
-    if (questionNumber >= 0){
-      let prevQ = questionNumber - 1
-      setQuestionNumber(prevQ)
-      setCurrentQ(questions[prevQ])
-    }
-  }
-
-  const forward = () => {
-    if (questionNumber < questions.length){
-      let nextQ = questionNumber + 1
-      setQuestionNumber(nextQ)
-      setCurrentQ(questions[nextQ])
-      console.log({questionNumber,nextQ})
-    }
-  }
-
-  // atsakymo gavimui teskutai 
 
   const changeQ = () => {
-    if(questionNumber < questions.length){
-      setQuestionNumber(questionNumber + 1)
-      setCurrentQ(questions[questionNumber])
-    } else {
-      setFinished(true)
+    if (questionNum >= questions.length) {
+      setState('result')
+      console.log(userAnswer)
+      return
     }
+    setCurrentQ(questions[questionNum])
   }
 
-  const getValue = (e) => {
-    console.log(e.target.value)
+  const getAnswer = (e) => {
     let answer = {
       uAnswer: e.target.value,
-      answer: currentQ.answer,
-      question: currentQ
+      questionId: Number(e.target.id)
     }
+    setQuestionNum(questionNum + 1)
     setUserAnswer([...userAnswer, answer])
   }
 
@@ -64,19 +40,32 @@ function App() {
     changeQ()
   }, [userAnswer])
 
-  return (
-   <Paper align="center" sx={{display: "flex", justifyContent: "center", flexDirection: 'column'}}>
-    <StartPage onClick={start} start={started}/>
-    {(started && !finished) ? <TechCard
-      question={currentQ}
-      back={back}
-      forward={forward}
-      getValue={getValue}
-    /> : null }
-    {
-      (started && finished) ? <Result results={userAnswer}/> : null
+  const run = (state) => {
+    // state : 'start' - initial state, renders <StartPage>
+    //          'question' - renders question, gets user answers <techCard>
+    //          'result' - renders <Results>, with user answers
+
+    switch (state) {
+      default:
+      case 'start':
+        return <StartPage onClick={startF} />
+      case 'question':
+        return <TechCard
+          question={currentQ}
+          getValue={getAnswer}
+        />
+      case 'result':
+        return <Result
+          results={userAnswer}
+          questions={questions}
+        />
     }
-   </Paper>
+  }
+
+  return (
+    <Paper align="center" sx={{ display: "flex", justifyContent: "center", flexDirection: 'column' }}>
+      {run(state)}
+    </Paper>
   );
 }
 

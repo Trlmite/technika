@@ -4,19 +4,22 @@
             "title": "Tank",
             "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/1024px-Alabino05042017-40.jpg",
             "variants": ["T-72", "BTR-60", "BMP-1", "BRDM"],
-            "answer": "T-72"
+            "answer": "T-72",
+            "id": 1
         },
         {
             "title": "SPG",
             "imgUrl": "http://www.military-today.com/artillery/2s19_msta_s.jpg",
             "variants":["2S3 Akatsiya","T-80", "BMP-2", "2S19 Msta-S"],
-            "answer": "2S19 Msta-S"
+            "answer": "2S19 Msta-S",
+            "id": 2
         },
         {
             "title": "Tank",
-            "imgUrl": "https://thumbs.dreamstime.com/z/russian-tank-t-bvm-moscow-region-russia-august-russian-tank-t-bvm-start-demonstration-program-alabino-234467736.jpg",
+            "imgUrl": "https://www.globalsecurity.org/military/world/russia/images/t-80bvm-image02.jpg",
             "variants": ["T-64", "T-90", "T-80", "BMP-3"],
-            "answer": "T-80"
+            "answer": "T-80",
+            "id": 3
         }
     ]
 }
